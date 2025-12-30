@@ -40,8 +40,9 @@ pipeline {
                         export PATH="/var/jenkins_home/.local/bin:$PATH"
                         export PYTHONPATH=".:$PYTHONPATH"
                         export PYTHONUSERBASE="/var/jenkins_home/.local"
-                        python3 -m site
-                        python3 -m pytest test_app.py -v --cov=app --cov-report=html --cov-report=term
+                        pwd
+                        ls -la
+                        python3 -m pytest test_app.py -v --cov=app --cov-report=html --cov-report=term --import-mode=importlib
                     '''
                 }
             }
