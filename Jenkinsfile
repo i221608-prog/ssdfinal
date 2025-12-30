@@ -23,9 +23,9 @@ pipeline {
             steps {
                 script {
                     echo '========== Installing Dependencies =========='
-                    bat '''
-                        python -m venv venv
-                        call venv\\Scripts\\activate.bat
+                    sh '''
+                        python3 -m venv venv
+                        . venv/bin/activate
                         pip install --upgrade pip
                         pip install -r requirements.txt
                         pip install pytest pytest-cov
@@ -38,9 +38,9 @@ pipeline {
             steps {
                 script {
                     echo '========== Running Unit Tests =========='
-                    bat '''
-                        call venv\\Scripts\\activate.bat
-                        pytest test_app.py -v --cov=. --cov-report=html --cov-report=term
+                    sh '''
+                        . venv/bin/activate
+                        pytest test_app.py -v --cov=app --cov-report=html --cov-report=term
                     '''
                 }
             }
@@ -50,9 +50,9 @@ pipeline {
             steps {
                 script {
                     echo '========== Building Application =========='
-                    bat '''
-                        call venv\\Scripts\\activate.bat
-                        echo Build artifacts generated successfully
+                    sh '''
+                        . venv/bin/activate
+                        echo "Build artifacts generated successfully"
                     '''
                 }
             }
@@ -62,11 +62,11 @@ pipeline {
             steps {
                 script {
                     echo '========== Deploying Application =========='
-                    bat '''
-                        call venv\\Scripts\\activate.bat
-                        echo Application deployed successfully
-                        echo You can modify this stage to deploy to your target environment
-                        echo Examples: Docker, AWS, Heroku, etc.
+                    sh '''
+                        . venv/bin/activate
+                        echo "Application deployed successfully"
+                        echo "You can modify this stage to deploy to your target environment"
+                        echo "Examples: Docker, AWS, Heroku, etc."
                     '''
                 }
             }
