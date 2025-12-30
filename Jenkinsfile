@@ -37,6 +37,7 @@ pipeline {
                 script {
                     echo '========== Running Unit Tests =========='
                     sh '''
+                        export PATH="/var/jenkins_home/.local/bin:$PATH"
                         pytest test_app.py -v --cov=app --cov-report=html --cov-report=term
                     '''
                 }
