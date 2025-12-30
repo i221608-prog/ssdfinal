@@ -24,9 +24,9 @@ pipeline {
                 script {
                     echo '========== Installing Dependencies =========='
                     sh '''
-                        pip install --upgrade pip
-                        pip install -r requirements.txt
-                        pip install pytest pytest-cov
+                        pip install --upgrade pip --break-system-packages
+                        pip install -r requirements.txt --break-system-packages
+                        pip install pytest pytest-cov --break-system-packages
                     '''
                 }
             }
