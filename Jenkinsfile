@@ -4,7 +4,6 @@ pipeline {
     environment {
         PYTHON_VERSION = '3.13'
         APP_NAME = 'flask-student-app'
-        BRANCH = 'main'
     }
 
     stages {
@@ -13,8 +12,8 @@ pipeline {
                 script {
                     echo '========== Cloning Repository =========='
                     checkout([$class: 'GitSCM',
-                        branches: [[name: '*/${BRANCH}']],
-                        userRemoteConfigs: [[url: 'https://github.com/i221608-prog/flask.git']]
+                        branches: [[name: '*/main']],
+                        userRemoteConfigs: [[url: 'https://github.com/i221608-prog/ssdfinal.git']]
                     ])
                 }
             }
