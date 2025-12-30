@@ -24,8 +24,6 @@ pipeline {
                 script {
                     echo '========== Installing Dependencies =========='
                     sh '''
-                        python3 -m venv venv
-                        . venv/bin/activate
                         pip install --upgrade pip
                         pip install -r requirements.txt
                         pip install pytest pytest-cov
@@ -39,7 +37,6 @@ pipeline {
                 script {
                     echo '========== Running Unit Tests =========='
                     sh '''
-                        . venv/bin/activate
                         pytest test_app.py -v --cov=app --cov-report=html --cov-report=term
                     '''
                 }
@@ -51,7 +48,6 @@ pipeline {
                 script {
                     echo '========== Building Application =========='
                     sh '''
-                        . venv/bin/activate
                         echo "Build artifacts generated successfully"
                     '''
                 }
@@ -63,7 +59,6 @@ pipeline {
                 script {
                     echo '========== Deploying Application =========='
                     sh '''
-                        . venv/bin/activate
                         echo "Application deployed successfully"
                         echo "You can modify this stage to deploy to your target environment"
                         echo "Examples: Docker, AWS, Heroku, etc."
